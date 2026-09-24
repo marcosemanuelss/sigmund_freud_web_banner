@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigmund Freud - O Inconsciente Revelado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0c0a09;
+            color: #e7e5e4;
+        }
+        .font-serif-classic {
+            font-family: 'Newsreader', serif;
+        }
+        .font-heading {
+            font-family: 'Cinzel', serif;
+        }
+        .vintage-border {
+            border: 1px solid rgba(217, 119, 6, 0.25);
+        }
+        .glow-effect {
+            box-shadow: 0 0 50px -10px rgba(180, 83, 9, 0.2);
+        }
+        .sepia-overlay {
+            filter: sepia(0.35) contrast(1.05) brightness(0.95);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-800 selection:text-amber-100">
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-stone-950/80 border-b border-stone-800/80 px-4 py-3 sm:px-8">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-700 to-amber-500 flex items-center justify-center text-stone-950 font-heading font-bold text-lg shadow-lg shadow-amber-900/30">
+                    SF
+                </div>
+                <div>
+                    <span class="block text-xs uppercase tracking-widest text-amber-500 font-semibold">Exposição Digital</span>
+                    <h1 class="text-sm sm:text-base font-semibold text-stone-200 leading-tight">Pioneiros da Psicologia</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <button id="audioBtn" class="flex items-center space-x-2 text-xs bg-stone-900 hover:bg-stone-800 border border-stone-700/80 text-amber-300 px-3 py-1.5 rounded-full transition-all duration-200">
+                    <svg id="playIcon" class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                    </svg>
+                    <span id="audioText" class="hidden sm:inline">Ouvir Relato</span>
+                </button>
+                
+                <button id="qrModalBtn" class="bg-amber-600 hover:bg-amber-500 text-stone-950 font-medium text-xs px-3 py-1.5 rounded-full transition-all duration-200 flex items-center space-x-1.5 shadow-md shadow-amber-900/20">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+                    </svg>
+                    <span>Compartilhar</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center px-4 py-8 sm:py-12">
+        <article class="max-w-3xl w-full bg-stone-900/60 backdrop-blur-sm rounded-2xl vintage-border p-6 sm:p-10 lg:p-12 glow-effect relative overflow-hidden my-auto">
+            
+            <!-- Subtle Background Accents -->
+            <div class="absolute -top-24 -right-24 w-60 h-60 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-60 h-60 bg-amber-800/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Hero Header with Image -->
+            <div class="border-b border-stone-800 pb-8 mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                
+                <!-- Freud Portrait Image -->
+                <div class="relative group flex-shrink-0">
+                    <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-2xl bg-stone-800 border-2 border-amber-500/50 p-1 shadow-2xl overflow-hidden relative">
+                        <img 
+                            src="freud.jpg" 
+                            alt="Retrato de Sigmund Freud" 
+                            class="w-full h-full object-cover rounded-xl sepia-overlay transition-transform duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/262322/d97706?text=Sigmund+Freud';"
+                        />
+                    </div>
+                </div>
+
+                <!-- Title & Meta -->
+                <div class="flex-grow">
+                    <div class="inline-flex items-center space-x-2 bg-amber-950/60 border border-amber-800/40 px-3 py-1 rounded-full text-xs text-amber-400 mb-3">
+                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span>Autobiografia Reflexiva</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-stone-100 tracking-tight leading-tight">
+                        Sigmund Freud
+                    </h2>
+                    <p class="text-amber-500 font-serif-classic italic text-lg sm:text-xl mt-1">
+                        O Criador da Psicanálise e a Descoberta do Inconsciente
+                    </p>
+                    <p class="text-xs font-mono text-stone-400 mt-2">1856 — 1939 | Viena, Áustria</p>
+                </div>
+            </div>
+
+            <div id="narrativeText" class="space-y-6 font-serif-classic text-stone-300 text-lg sm:text-xl leading-relaxed sm:leading-loose">
+                
+                <p class="first-letter:text-5xl first-letter:font-heading first-letter:text-amber-500 first-letter:mr-3 first-letter:float-left first-letter:font-bold">
+                    Meu nome é <strong class="text-stone-100 font-semibold">Sigmund Freud</strong>. Nasci em 1856, em Freiberg, em uma época na qual a mente humana ainda era vista apenas sob a ótica da biologia e da consciência visível. Desde cedo, incomodei-me com a ideia de que nossas escolhas e sofrimentos fossem explicados apenas pela lógica racional ou por lesões físicas no cérebro.
+                </p>
+
+                <p>
+                    Foi na Medicina e na Neurologia que comecei minha jornada, mas percebi que a ciência tradicional deixava muitas lacunas. Passei, então, a me perguntar: <em>o que acontece quando o sofrimento humano não tem uma causa orgânica evidente? O que a mente esconde por trás dos sintomas, dos sonhos e dos lapsos de linguagem?</em>
+                </p>
+
+                <p>
+                    Essa pergunta me levou a investigar os meandros do inconsciente. Junto a colegas como Josef Breuer e a partir da escuta atenta das minhas pacientes, desenvolvi o método da livre associação e criei a Psicanálise. Ao ouvir o que as pessoas diziam quando não estavam tentando ser racionais, percebi que desejos reprimidos, traumas de infância e conflitos internos permaneciam vivos dentro delas, moldando seus comportamentos sem que percebessem.
+                </p>
+
+                <div class="my-8 p-6 bg-stone-950/80 border-l-4 border-amber-600 rounded-r-xl italic text-amber-200/90 text-xl shadow-inner">
+                    "As descobertas revelaram algo que transformou a forma como enxergamos o ser humano. O Eu não é senhor em sua própria casa."
+                </div>
+
+                <p>
+                    Fomos forçados a reconhecer que a nossa sexualidade, nossas defesas psíquicas e o modo como lidamos com a dor e a cultura são guiados por forças inconscientes que muitas vezes tentamos ignorar.
+                </p>
+
+                <p>
+                    Essas ideias provocaram fortes resistências na sociedade e no meio acadêmico da minha época. No entanto, o avanço da Psicanálise ajudou a evidenciar que o sofrimento psíquico não era um sinal de fraqueza, mas o resultado de tensões profundas entre os nossos impulsos mais primitivos e as exigências da civilização. Minha trajetória me mostrou que a investigação da mente poderia ir além dos sintomas aparentes e revelar as estruturas mais profundas da subjetividade.
+                </p>
+
+                <!-- Core Philosophical Question Callout -->
+                <div class="my-10 p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-amber-950/40 to-stone-950 border border-amber-700/30 text-center relative">
+                    <span class="text-amber-500 font-heading text-xs uppercase tracking-widest font-bold block mb-2">A Grande Questão</span>
+                    <p class="text-xl sm:text-2xl font-serif-classic text-amber-100 font-medium leading-snug">
+                        "Se grande parte do que nos move é motivada por forças que desconhecemos, quanto do que chamamos de 'vontade própria' é realmente consciente e quanto é apenas o eco de nossas memórias e desejos reprimidos?"
+                    </p>
+                </div>
+
+                <p class="text-stone-200 font-medium">
+                    Eu sou <strong class="text-amber-400 font-semibold">Sigmund Freud</strong>, médico, criador da Psicanálise e um investigador que dedicou a vida a compreender o inconsciente e os mistérios da alma humana. Porque, para compreender o homem em sua totalidade, precisamos ter a coragem de olhar para aquilo que ele próprio tenta esconder de si mesmo.
+                </p>
+
+            </div>
+
+            <div class="mt-12 pt-6 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 font-sans">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>Conteúdo Pedagógico e Científico</span>
+                </div>
+                <span>Série Grandes Mentes da Psicologia</span>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-stone-900 bg-stone-950 text-center text-xs text-stone-500">
+        <p>Acesse e compartilhe esta página utilizando o código QR fornecido.</p>
+    </footer>
+
+    <div id="qrModal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-stone-900 border border-stone-700 rounded-2xl max-w-sm w-full p-6 text-center shadow-2xl relative">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-stone-400 hover:text-stone-100 text-lg">
+                ✕
+            </button>
+            <h3 class="text-xl font-heading font-bold text-stone-100 mb-1">Acesse via QR Code</h3>
+            <p class="text-xs text-stone-400 mb-6">Escaneie para abrir esta página em seu dispositivo móvel</p>
+
+            <div class="bg-white p-4 rounded-xl inline-block mb-4 shadow-lg" id="qrcode"></div>
+
+            <p class="text-xs text-stone-400 font-mono break-all bg-stone-950 p-2 rounded border border-stone-800 mb-4" id="currentUrlText"></p>
+
+            <button id="copyUrlBtn" class="w-full bg-amber-600 hover:bg-amber-500 text-stone-950 font-semibold text-xs py-2.5 rounded-lg transition-all duration-200">
+                Copiar Link da Página
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // QR Code Generation
+        const currentUrl = window.location.href;
+        document.getElementById('currentUrlText').textContent = currentUrl;
+
+        new QRCode(document.getElementById("qrcode"), {
+            text: currentUrl,
+            width: 180,
+            height: 180,
+            colorDark : "#0c0a09",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        // Modal Controls
+        const qrModal = document.getElementById('qrModal');
+        const qrModalBtn = document.getElementById('qrModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const copyUrlBtn = document.getElementById('copyUrlBtn');
+
+        qrModalBtn.addEventListener('click', () => qrModal.classList.remove('hidden'));
+        closeModalBtn.addEventListener('click', () => qrModal.classList.add('hidden'));
+        qrModal.addEventListener('click', (e) => {
+            if (e.target === qrModal) qrModal.classList.add('hidden');
+        });
+
+        copyUrlBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                copyUrlBtn.textContent = 'Link Copiado!';
+                setTimeout(() => copyUrlBtn.textContent = 'Copiar Link da Página', 2000);
+            });
+        });
+
+        // Text To Speech Synthesis
+        const audioBtn = document.getElementById('audioBtn');
+        const audioText = document.getElementById('audioText');
+        const playIcon = document.getElementById('playIcon');
+        let isSpeaking = false;
+        let utterance = null;
+
+        if ('speechSynthesis' in window) {
+            audioBtn.addEventListener('click', () => {
+                if (isSpeaking) {
+                    window.speechSynthesis.cancel();
+                    isSpeaking = false;
+                    audioText.textContent = 'Ouvir Relato';
+                    playIcon.innerHTML = `<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>`;
+                } else {
+                    const fullText = document.getElementById('narrativeText').innerText;
+                    utterance = new SpeechSynthesisUtterance(fullText);
+                    utterance.lang = 'pt-BR';
+                    utterance.rate = 0.95;
+
+                    utterance.onend = () => {
+                        isSpeaking = false;
+                        audioText.textContent = 'Ouvir Relato';
+                        playIcon.innerHTML = `<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>`;
+                    };
+
+                    window.speechSynthesis.speak(utterance);
+                    isSpeaking = true;
+                    audioText.textContent = 'Pausar Áudio';
+                    playIcon.innerHTML = `<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>`;
+                }
+            });
+        } else {
+            audioBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
